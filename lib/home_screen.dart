@@ -1,5 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:list_cart/screens/home.dart';
+import 'package:list_cart/screens/message.dart';
+import 'package:list_cart/screens/profile.dart';
+import 'package:list_cart/screens/setting.dart';
 
 class home_screen extends StatefulWidget {
   const home_screen({super.key});
@@ -9,6 +13,21 @@ class home_screen extends StatefulWidget {
 }
 
 class _home_screenState extends State<home_screen> {
+  int _selectedIndex = 0;
+  void _navigateBottomBar(int index){
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+
+  final List<Widget> _screens = [
+    home(),
+    message(),
+    setting(),
+    profile()
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,22 +38,16 @@ class _home_screenState extends State<home_screen> {
         ),),
         backgroundColor: Colors.blue,
       ),
-      body: Padding(
-          padding: EdgeInsets.all(8.50),
-          child: ListView(
-            children: [
-              ListTile(title: Text("List title"),)
-            ],
-          ),
-      ),
+      body: _screens[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
+          currentIndex: _selectedIndex,
+          onTap: _navigateBottomBar,
           type: BottomNavigationBarType.fixed,
           items: [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+            BottomNavigationBarItem(icon: Icon(Icons.list), label: 'ListView'),
             BottomNavigationBarItem(icon: Icon(Icons.message), label: 'Message'),
             BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
-
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
           ]
       ),
     );
