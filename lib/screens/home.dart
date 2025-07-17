@@ -11,7 +11,7 @@ class _homeState extends State<home> {
   @override
   Widget build(BuildContext context) {
 
-    studentModel
+
 
     return Scaffold(
       body: Padding(
