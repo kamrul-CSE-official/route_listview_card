@@ -46,9 +46,13 @@ class _homeState extends State<home> {
                        StudentModel student = students[index];
                        return Card(
                          child: ListTile(
-                           leading: Text(student.id!),
+                           leading: CircleAvatar(
+                             radius: 17,
+                             backgroundColor: Colors.yellow,
+                             child: Text(student.name!.substring(0, 1))
+                           ),
                            title: Text(
-                             "Student's name: ${student.name!}",
+                             student.name!,
                              style: TextStyle(
                                  color: Colors.blue,
                                  fontWeight: FontWeight.bold
